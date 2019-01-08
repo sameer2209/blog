@@ -1,0 +1,18 @@
+<%= link_to "Back to List", articles_path %>
+
+<h1>Showing the selected article</h1>
+
+<table>
+	<tr>
+		<th>Title:</th>
+		<td><%= @article.title %></td>
+	</tr>
+
+	<tr>
+		<th>Content:</th>
+		<td><%= @article.content %></td>
+	</tr>
+
+</table>
+
+<%= link_to "Edit", edit_article_path(@article) %>
