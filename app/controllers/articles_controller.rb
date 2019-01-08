@@ -27,6 +27,10 @@ class ArticlesController < ApplicationController
 
 	def edit
 		@article = Article.find(params[:id])
+		
+		unless current_user == @article.user
+			redirect_to(@article, notice: "You are not authorized to edit this article") and return
+		end
 	end
 
 	def update
@@ -41,6 +45,10 @@ class ArticlesController < ApplicationController
 
 	def destroy
 		@article = Article.find(params[:id])
+
+		unless current_user == @article.user
+			redirect_to(@article, notice: "You are not authorized to delete this article") and return
+		end
 
 		if @article.destroy
 			flash[:notice] = "Article '#{@article.title}' deleted successfully."
