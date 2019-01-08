@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Blog</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Blog</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <body>
-    <%= link_to 'About', about_path %>
-    <%= link_to 'Home', root_path %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-    <% flash.each do |name, msg| %>
-        <ul>
-         <li><%= msg %></li>
-        </ul>
-    <% end %>
+<body>
+
+  <%= render 'layouts/navigation' %>
+  
+
+  <% flash.each do |name, msg| %>
+  <ul>
+   <li><%= msg %></li>
+ </ul>
+ <% end %>
+
+ <div class="container">
+  <% if notice %><div class="alert alert-info"><%= notice %></div><%end%>
+  <% if alert %><div class="alert alert-warning"><%= alert %></div><%end%>
+  <%= yield %>    
+</div>
 
 
-    <%= yield %>
-  </body>
+</body>
 </html>
