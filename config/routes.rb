@@ -10,6 +10,8 @@ Rails.application.routes.draw do
  
  get 'about', to: 'pages#about'
 
- resources :articles
+ resources :articles do 
+ 	resources :comments 
+ end
   
 end
