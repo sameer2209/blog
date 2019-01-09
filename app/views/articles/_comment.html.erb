@@ -1,4 +1,5 @@
-<div>
+<div class="container">
   <h4>Comment by <%= (User.find(comment.user_id)).name %></h4>
   <p class="comment"><%= comment.content %></p>
+  <p>Posted <%= distance_of_time_in_words_to_now(comment.created_at) %> ago</p>
 </div>
