@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+	before_action :authenticate_user!
+
 	def create
 		# render json: params[:comment][:content]
 		@comment = Comment.new(:content => params[:comment][:content])
