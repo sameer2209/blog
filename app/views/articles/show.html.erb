@@ -18,6 +18,7 @@
 <%= link_to "Edit", edit_article_path(@article) %>
 
 <h3><%= pluralize(@article.comments.size, 'Comment') %></h3>
+<div id="comment_pane">
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
-
+</div>
 <%= render partial: 'comments/form' %>
