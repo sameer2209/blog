@@ -17,8 +17,19 @@
 
 <%= link_to "Edit", edit_article_path(@article) %>
 
+<div id="comments-number">
 <h3><%= pluralize(@article.comments.size, 'Comment') %></h3>
+</div>
+
 <div id="comment_pane">
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
 </div>
+<% if user_signed_in? %>
 <%= render partial: 'comments/form' %>
+<%end%>
+
+<!-- <script type="text/javascript">
+	$("#heading").click(function(){
+		alert("clicked");
+	});
+</script> -->

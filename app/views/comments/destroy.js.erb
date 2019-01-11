@@ -1,0 +1,2 @@
+$('#comments-number').html("<h3><%= escape_javascript(pluralize(@article.comments.size, 'Comment')) %></h3>");
+$('#single-comment').remove();
