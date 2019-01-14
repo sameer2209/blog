@@ -1,0 +1,2 @@
+$('#likes_count').html("<h3><%= escape_javascript(pluralize(@article.likes.size, 'Like')) %></h3>");
+$('#like_button').html("<%= escape_javascript( render partial: 'likes/like_button', locals: {like: @like, article_id: @article.id}) %>");

@@ -17,19 +17,32 @@
 
 <%= link_to "Edit", edit_article_path(@article) %>
 
+<% if user_signed_in? %>
+
+	<div id="like_button">
+		<% if article_liked?(@article.id) %>
+			<%= render partial: "likes/unlike_button", locals: {like: @like, article_id: @article.id} %>
+
+		<%else%>
+			<%= render partial: "likes/like_button", locals: {like: @like, article_id: @article.id} %>
+		<%end%>
+
+	</div>
+
+<%end%>
+
+<div id="likes_count">
+	<h3><%= pluralize(@article.likes.size, 'Like') %></h3>
+</div>
+
 <div id="comments-number">
-<h3><%= pluralize(@article.comments.size, 'Comment') %></h3>
+	<h3><%= pluralize(@article.comments.size, 'Comment') %></h3>
 </div>
 
 <div id="comment_pane">
-<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+	<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
 </div>
 <% if user_signed_in? %>
-<%= render partial: 'comments/form' %>
+<h3>Post a Comment</h3>
+<%= render partial: 'comments/form', locals: {article: @article, comment: @comment} %>
 <%end%>
-
-<!-- <script type="text/javascript">
-	$("#heading").click(function(){
-		alert("clicked");
-	});
-</script> -->

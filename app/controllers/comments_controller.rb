@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
 				@comment.user_id = current_user.id
 				if @comment.save!
 					format.html {redirect_to article_path(@comment.article)}
+					#format.html
 					#format.html {puts "inside 1"}
 					format.js
 					#format.js{puts "inside 2"}
@@ -43,5 +44,23 @@ class CommentsController < ApplicationController
 
 	end
 
+	def edit
+		@comment = Comment.find(params[:id])
+		@article = Article.find(params[:article_id])
+		respond_to do |format|
+			format.html
+			format.js
+		end
+
+	end
+
+	def update
+		@comment = Comment.find(params[:id])
+		@comment.update_attributes(:content => params[:comment][:content])
+		respond_to do |format|
+			format.html
+			format.js
+		end
+	end
 
 end

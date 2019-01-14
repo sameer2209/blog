@@ -1,9 +1,14 @@
-<div class="container" id="single-comment">
-  <h4>Comment by <%= comment.user.name %></h4>
-  <%= image_tag comment.user.image.url, size: "30x30" %>
-  <p class="comment"><%= comment.content %></p>
-  <p>Posted <%= distance_of_time_in_words_to_now(comment.created_at) %> ago</p>
-  <% if current_user == comment.user %>
-  <%= button_to "Delete", article_comment_path(comment.article, comment), {method: :delete, remote: true, class: "btn btn-danger delete-comment-button"} %>
-  <%end%>
+<div class="container" id="single-comment-<%= comment.id %>">
+	<h4>Comment by <%= comment.user.name %></h4>
+	<%= image_tag comment.user.image.url, size: "30x30" %>
+	<p class="comment"><%= comment.content %></p>
+	<% if comment.created_at < comment.updated_at %>
+	<p>Updated <%= distance_of_time_in_words_to_now(comment.updated_at) %> ago</p>
+	<%else%>
+	<p>Posted <%= distance_of_time_in_words_to_now(comment.created_at) %> ago</p>
+	<%end%>
+	<% if current_user == comment.user %>
+	<%= button_to "Delete", article_comment_path(comment.article, comment), {method: :delete, remote: true, class: "btn btn-danger delete-comment-button"} %>
+	<%= button_to "Edit", edit_article_comment_path(comment.article, comment), {method: :get, remote: true, class: "btn btn-primary"} %>
+	<%end%>
 </div>
