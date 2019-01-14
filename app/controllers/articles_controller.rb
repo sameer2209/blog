@@ -7,10 +7,14 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
+		params.inspect
 		@article = Article.find(params[:id])
 		@comment = Comment.new
+		puts @article.id
 		@comment.article_id = @article.id
-		@like = Like.find_by(:user_id => current_user.id, :article_id => @article.id)
+		if user_signed_in?
+			@like = Like.find_by(:user_id => current_user.id, :article_id => @article.id)
+		end
 	end
 
 	def new
